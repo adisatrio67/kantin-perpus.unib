@@ -137,7 +137,7 @@ svg{flex:none}
 .ml{border-top:1px solid #e6ecf7;padding-top:12px;margin-bottom:16px;flex:1}
 .ml small{display:block;color:#8a9abb;font-weight:800;letter-spacing:.06em;font-size:.62rem;margin-bottom:6px}
 .ml div{display:flex;justify-content:space-between;gap:8px;padding:3px 0;font-size:.78rem}.ml b{color:#0d2b6b;white-space:nowrap}
-.bt{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bt{display:grid;grid-template-columns:1fr;gap:8px}
 .bt button{padding:10px 6px;border-radius:10px;font:inherit;font-weight:700;font-size:.76rem;cursor:pointer;border:1.5px solid #0d2b6b;display:flex;gap:6px;align-items:center;justify-content:center}
 .b1{background:#fff;color:#0d2b6b}.b2{background:#0d2b6b;color:#fff}
 .dk{background:linear-gradient(160deg,#0a1f55,#1d3f94);color:#fff;border-radius:24px;padding:30px 26px;margin-bottom:40px;display:grid;gap:24px;align-items:center}
@@ -189,7 +189,7 @@ svg{flex:none}
 <div class="lg"><img id="logo" alt="Logo Universitas Bengkulu"></div>
 <div class="tt"><b>Universitas Bengkulu</b><small>Kantin Perpustakaan UNIB</small></div>
 <div class="nl"><button class="on" onclick="go('top')">Beranda</button><button onclick="go('kantin')">Daftar Kantin</button><button onclick="go('kantin')">Menu Favorit</button><button onclick="go('stan')">Denah Lokasi</button><button onclick="go('info')">Informasi</button></div>
-<div class="ac"><button class="pes" data-i="cart" onclick="go('kantin')">Pesanan</button><button class="psn" onclick="go('kantin')">Pesan Sekarang</button><button class="hb" id="hb" aria-label="Menu">&#9776;</button></div>
+<div class="ac"><button class="hb" id="hb" aria-label="Menu">&#9776;</button></div>
 <div class="mn" id="mn" hidden>
 <button onclick="go('top')">Beranda</button><button onclick="go('kantin')">Daftar Kantin</button><button onclick="go('kantin')">Menu Favorit</button><button onclick="go('stan')">Denah Lokasi</button><button onclick="go('info')">Informasi</button>
 </div></div></nav>
@@ -346,7 +346,7 @@ function renderHome(){
   if(state.sort==="2")list.sort(function(a,b){return b.k.menu.length-a.k.menu.length});
   $("grid").innerHTML=list.map(function(x){
     var k=x.k,e=EX[k.id]||{},f=FOTO[k.id],o=isOpen(k.jam),bc=BC[x.i%4];
-    return '<article class="fcard"><div class="fi" style="background-color:'+k.warna+(f?';background-image:url('+f+')':'')+'">'+(f?'':'<span class="em">'+k.emoji+'</span>')+'<span class="cb" style="background:'+bc[0]+';color:'+bc[1]+'">'+(e.b||k.kat)+'</span>'+(o===null?'':'<span class="ob '+(o?'on':'off')+'">'+(o?'BUKA':'TUTUP')+'</span>')+'<div class="fb"><span>'+(e.r?'<em>&#9733; '+e.r+'</em> <small>('+e.u+' ulasan)</small>':'Jam '+k.jam)+'</span><span>'+k.menu.length+' Pilihan Menu</span></div></div><div class="fx"><h3>'+k.nama+'</h3><p>'+k.desk+'</p><div class="ml"><small>MENU FAVORIT MAHASISWA</small>'+k.menu.slice(0,3).map(function(m){return '<div><span>'+m.n+'</span><b>'+rp(m.h)+'</b></div>'}).join("")+'</div><div class="bt"><button class="b1" data-h="'+k.id+'/menu">'+ic("eye",14)+' Lihat Menu</button><button class="b2" data-h="'+k.id+'">'+ic("plus",14)+' Pesan Cepat</button></div></div></article>';
+    return '<article class="fcard"><div class="fi" style="background-color:'+k.warna+(f?';background-image:url('+f+')':'')+'">'+(f?'':'<span class="em">'+k.emoji+'</span>')+'<span class="cb" style="background:'+bc[0]+';color:'+bc[1]+'">'+(e.b||k.kat)+'</span>'+(o===null?'':'<span class="ob '+(o?'on':'off')+'">'+(o?'BUKA':'TUTUP')+'</span>')+'<div class="fb"><span>'+(e.r?'<em>&#9733; '+e.r+'</em> <small>('+e.u+' ulasan)</small>':'Jam '+k.jam)+'</span><span>'+k.menu.length+' Pilihan Menu</span></div></div><div class="fx"><h3>'+k.nama+'</h3><p>'+k.desk+'</p><div class="ml"><small>MENU FAVORIT MAHASISWA</small>'+k.menu.slice(0,3).map(function(m){return '<div><span>'+m.n+'</span><b>'+rp(m.h)+'</b></div>'}).join("")+'</div><div class="bt"><button class="b1" data-h="'+k.id+'/menu">'+ic("eye",14)+' Lihat Menu</button></div></div></article>';
   }).join("");
   $("none").hidden=list.length>0;
   $("cnt").textContent="Menampilkan "+list.length+" dari "+KANTIN.length+" Tenant Aktif";
